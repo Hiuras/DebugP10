@@ -15,7 +15,7 @@ const EventList = () => {
   const [currentPage, setCurrentPage] = useState(1); // État pour la page actuelle
 
   let filteredEvents = []; // Initialisation du tableau d'événements filtrés
-  // Filtre en fonction du type selectionné
+  // Filtre en fonction du type sélectionné
   if (data?.events) {
     if (type) {
       filteredEvents = data.events.filter((event) => event.type === type);
@@ -45,12 +45,16 @@ const EventList = () => {
         "loading"
       ) : (
         <>
+          {/* Affichage du titre de la sélection */}
           <h3 className="SelectTitle">Catégories</h3>
+          {/* Sélection du type d'événement à afficher */}
           <Select
             selection={Array.from(typeList)}
             onChange={(value) => (value ? changeType(value) : changeType(null))}
           />
+          {/* Conteneur pour afficher les événements filtrés */}
           <div id="events" className="ListContainer">
+            {/* Affichage de chaque événement filtré sous forme de carte événementielle */}
             {filteredEvents.map(
               (event) =>
                 event && (
@@ -68,6 +72,7 @@ const EventList = () => {
                 )
             )}
           </div>
+          {/* Pagination pour naviguer entre les pages d'événements */}
           <div className="Pagination">
             {[...Array(pageNumber || 0)].map((_, n) => (
               // eslint-disable-next-line react/no-array-index-key
