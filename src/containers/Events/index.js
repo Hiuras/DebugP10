@@ -23,6 +23,10 @@ const EventList = () => {
       filteredEvents = data.events;
     }
   }
+  
+  // Trier les événements filtrés par date du plus récent au plus ancien
+  filteredEvents.sort((a, b) => new Date(b.date) - new Date(a.date));
+
   // Pagination des événements filtrés
   filteredEvents = filteredEvents.filter(
     (event, index) =>
